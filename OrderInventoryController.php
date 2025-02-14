@@ -52,7 +52,7 @@ class OrderInventoryController extends Controller
         $lastProcessedVendorOrder = OrderInventoryOrder::max('vendor_order_id') ?? 0;
 
         $isNonExistentProductEnabled = $request->query('nep', false); // Default to false if 'nep' is not provided
-        $apiUrl = "https://intranet.r2o.com/InventoryOrdersAPI.aspx?page=1&pageSize=5000&lastVendorOrderId={$lastProcessedVendorOrder}";
+        $apiUrl = "https://{$apiDomain}/InventoryOrdersAPI.aspx?page=1&pageSize=5000&lastVendorOrderId={$lastProcessedVendorOrder}";
 
         try {
             $response = file_get_contents($apiUrl);
